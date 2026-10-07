@@ -1,0 +1,7 @@
+const express=require("express"),helmet=require("helmet"),rateLimit=require("express-rate-limit"),fs=require("fs"),path=require("path");
+const app=express(),PORT=process.env.PORT||3000,DATA=process.env.DATA_DIR||path.join(__dirname,"data"),FILE=path.join(DATA,"leads.json");
+fs.mkdirSync(DATA,{recursive:true});if(!fs.existsSync(FILE))fs.writeFileSync(FILE,"[]");
+app.use(helmet({contentSecurityPolicy:false}));app.use(express.json({limit:"20kb"}));app.use(express.static(path.join(__dirname,"public")));app.use("/api",rateLimit({windowMs:900000,limit:30}));
+app.get("/api/health",(_,r)=>r.json({ok:true}));
+app.post("/api/enquiry",(q,r)=>{let b=q.body||{};if(b.website)return r.json({ok:true});if(!b.name||!b.phone||!b.product)return r.status(400).json({ok:false,message:"Name, phone and product are required."});let c=(v,n=500)=>String(v||"").trim().slice(0,n);let lead={date:new Date().toISOString(),name:c(b.name,120),company:c(b.company,160),phone:c(b.phone,40),email:c(b.email,160),city:c(b.city,120),product:c(b.product,100),quantity:c(b.quantity,100),message:c(b.message,1000)};try{let all=JSON.parse(fs.readFileSync(FILE));all.push(lead);fs.writeFileSync(FILE,JSON.stringify(all,null,2));r.status(201).json({ok:true,message:"Enquiry received. We will contact you soon."})}catch(e){r.status(500).json({ok:false,message:"Please contact us by WhatsApp or phone."})}});
+app.get("*",(_,r)=>r.sendFile(path.join(__dirname,"public","index.html")));app.listen(PORT,()=>console.log("Website running on "+PORT));
