@@ -1,18 +1,39 @@
-AMRUT FOODS WEBSITE STARTER
-Includes responsive frontend and Express backend enquiry API.
+MAHA AMRUT PREMIUM WEBSITE — DEPLOYMENT NOTES
+================================================
+Files:
+- package.json
+- server.js
+- public/index.html
+- public/styles.css
+- public/app.js
+- public/images/ (add official logo/product photos here)
 
-RUN:
-1. Install Node.js 18+
-2. Extract ZIP
-3. Run `npm install`
-4. Run `npm start`
-5. Open http://localhost:3000
+UPDATE GITHUB
+1. Extract this ZIP.
+2. In Amir2856/amrut-foods-website, replace package.json and server.js.
+3. Replace public/index.html, public/styles.css, public/app.js.
+4. Commit. Render should redeploy if connected to this repository.
+5. Test /api/health and submit a test enquiry.
 
-IMPORTANT:
-- This code cannot be pasted into Google Sites. It is a separate custom website.
-- Deploy on a Node.js-capable host, then connect amrutfoodz.com via DNS after testing.
-- Enquiries are saved to data/leads.json. Some hosts erase local files after restart/deploy; configure persistent storage or a database before relying on this for live business.
-- Email alerts are not configured yet.
-- The package illustration is a CSS mockup, not your official logo or final packaging artwork.
-- Verify all product claims and details before publishing.
-- Keep current DNS records safe; don't switch the domain until the new website is tested.
+BRAND ASSETS
+- The CSS wordmark is temporary, NOT the official Amrut logo. Replace it with your official logo image before launch; do not redraw/alter your logo.
+- Product bag visuals are CSS mockups, not actual pack photos. Replace with approved product pack photos before publishing.
+- Hero/editorial images use remote Unsplash image URLs. Replace with licensed/original brand photography for production.
+
+ENQUIRIES
+- Form validates fields, rate-limits requests and saves leads to data/leads.json.
+- Render local storage may be ephemeral. For durable lead storage, add a persistent disk or database before relying on it for business-critical enquiries.
+- Optional email uses Resend HTTPS API, not SMTP.
+- Set Render environment variables:
+  RESEND_API_KEY = private Resend API key
+  ENQUIRY_TO = contact@amrutfoodz.com
+  ENQUIRY_FROM = Maha Amrut <verified-sender@amrutfoodz.com>
+- ENQUIRY_FROM must be a sender/domain verified in Resend. Never paste secrets into source code/GitHub.
+- Without these variables, lead storage still runs but email notification is not sent.
+- No admin dashboard/database integration is included yet.
+
+BEFORE PUBLIC LAUNCH
+- Replace temporary wordmark and product mockups.
+- Confirm all product/brand claims and pack information.
+- Check mobile layout and actual enquiry delivery.
+- Add durable storage and privacy policy appropriate to how enquiries are handled.
