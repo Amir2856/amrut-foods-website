@@ -11,7 +11,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>:root{--y:#f9c800;--yd:#e9b400;--r:#d9291c;--rd:#a81a12;--b:#5a1522;--ink:#231a17;--mut:#6b5f58;--cream:#fff8e6;--line:#eadfc6;--ok:#1f7a3d;--bad:#b3261e;--disp:"Fraunces",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}body{margin:0;font:16px/1.65 var(--sans);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto;display:block}a{color:inherit}.wrap{width:min(1180px,100% - 36px);margin-inline:auto}
@@ -49,71 +49,101 @@ em{font-style:italic;color:var(--r)}.eyebrow{font-size:12px;font-weight:800;lett
 .prod{grid-template-columns:1fr 1fr;align-items:center;gap:56px}.prod-rev .prod-img{order:2}.cols{grid-template-columns:1fr 1fr}.cols4{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:.9fr 1.1fr;gap:70px}.two.top{align-items:start}.fr{grid-template-columns:1fr 1fr}.ftr-in{grid-template-columns:1.4fr 1fr 1fr}.sec{padding:100px 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}*{transition:none!important}}
 .logo img{height:52px;width:auto}@media(min-width:760px){.logo img{height:58px}}
+
+/* ===== motion layer ===== */
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes pin{from{opacity:0;transform:translateY(110px) rotate(var(--r,0deg)) scale(.9)}to{opacity:1;transform:translateY(0) rotate(var(--r,0deg))}}
+@keyframes flt{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-14px) rotate(var(--r,0deg))}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes swap{from{opacity:.2;transform:scale(.9) rotate(-3deg)}to{opacity:1;transform:none}}
+.prog{position:fixed;top:0;left:0;height:4px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--r),var(--y));z-index:60}
+.hero{background-color:var(--y);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='.4' stroke-width='2'%3E%3Ccircle cx='0' cy='0' r='45'/%3E%3Ccircle cx='90' cy='0' r='45'/%3E%3Ccircle cx='0' cy='90' r='45'/%3E%3Ccircle cx='90' cy='90' r='45'/%3E%3Ccircle cx='45' cy='45' r='45'/%3E%3C/g%3E%3C/svg%3E");background-size:90px 90px;border-radius:0 0 44px 44px;position:relative;z-index:2}
+.hero-copy>*{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}.hero-copy>:nth-child(1){animation-delay:.1s}.hero-copy>:nth-child(2){animation-delay:.25s}.hero-copy>:nth-child(3){animation-delay:.45s}.hero-copy>:nth-child(4){animation-delay:.6s}.hero-copy>:nth-child(5){animation-delay:.75s}
+.ln{display:block;animation:rise 1s cubic-bezier(.2,.8,.2,1) both}.ln:nth-child(2){animation-delay:.18s}
+.p{transform:rotate(var(--r,0deg));translate:calc(var(--mx,0)*var(--k,14px)*2) calc(var(--my,0)*var(--k,14px));transition:translate .35s ease-out;animation:pin 1.1s cubic-bezier(.2,.8,.2,1) both,flt 6s ease-in-out 1.2s infinite}
+.p1{--r:-5deg;--k:14px;animation-delay:.3s,1.4s}.p2{--r:0deg;--k:24px;animation-delay:.1s,1.2s}.p3{--r:5deg;--k:-16px;animation-delay:.5s,1.6s}
+.seal{position:absolute;top:-6px;right:0;width:96px;height:96px;z-index:3;animation:spin 18s linear infinite;filter:drop-shadow(0 8px 14px rgba(0,0,0,.25))}
+.mq{background:var(--b);color:#fff;overflow:hidden;margin-top:-44px;padding:62px 0 16px}.mq-t{display:flex;width:max-content;animation:mq 30s linear infinite}.mq span{padding:0 26px;font:800 13px var(--sans);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}.mq span::after{content:"\2022";margin-left:52px;color:var(--y)}
+.btn-red{position:relative;overflow:hidden}.btn-red::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-130%);transition:transform .8s}.btn-red:hover::after{transform:translateX(130%)}
+.prod-img{perspective:900px;overflow:hidden}.prod-img img{transform:rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .25s ease-out}.prod-img img.swap{animation:swap .55s cubic-bezier(.2,.8,.2,1)}
+.card,.card-d,.rows li{transition:opacity .7s,transform .35s,box-shadow .35s,background .35s}
+.card.reveal.is-visible:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(90,21,34,.14)}.card-d.reveal.is-visible:hover{transform:translateY(-6px);background:rgba(255,255,255,.08)}
+.rows li.reveal.is-visible:hover{transform:translateX(10px)}.tab{transition:transform .2s,background .2s}.tab:hover{transform:translateY(-2px)}
+@media(max-width:759px){.seal{width:70px;height:70px;top:-14px}.hero{border-radius:0 0 28px 28px}.mq{margin-top:-28px;padding-top:44px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.reveal{opacity:1;transform:none}}
+
+/* ===== v3 bold layer ===== */
+:root{--d2:"Bricolage Grotesque",var(--sans)}
+h1,h2,h3{font-family:var(--d2)}h1{font-size:clamp(52px,12vw,124px);line-height:.88;text-transform:uppercase;letter-spacing:-.035em}h2{text-transform:uppercase;line-height:.95;letter-spacing:-.02em}h3{letter-spacing:-.01em}em{font-style:normal}
+.fd{position:absolute;border-radius:50%;border:5px solid #fff;box-shadow:0 14px 30px rgba(60,20,10,.35);z-index:4;animation:flt 7s ease-in-out infinite}
+.f1{left:-3%;top:6%;width:23%}.f2{right:-2%;top:34%;width:19%;animation-delay:1.2s}.f3{left:4%;bottom:8%;width:20%;animation-delay:2.4s}
+.cook{background:var(--b);color:#fff}.cook em{color:var(--y)}.cook .eyebrow{color:var(--y)}.dishes{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:34px}.dish{margin:0;text-align:center}.dish img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:50%;border:6px solid var(--y);transition:transform .5s cubic-bezier(.2,.8,.2,1)}.dish:hover img{transform:scale(1.08) rotate(6deg)}.dish figcaption{margin-top:14px;font:800 14px var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.stats{background:var(--r);color:#fff;padding:60px 0}.stats-in{display:grid;gap:30px;text-align:center}.stat b{display:block;font:800 clamp(52px,9vw,92px)/1 var(--d2);color:var(--y)}.stat span{font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.faq{max-width:820px}.faq details{border-bottom:1px solid var(--line);padding:20px 0}.faq summary{cursor:pointer;font:800 20px var(--d2);list-style:none;display:flex;justify-content:space-between;gap:16px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:var(--r);font-size:30px;line-height:1;transition:transform .3s}.faq details[open] summary::after{transform:rotate(45deg)}.faq p{margin:12px 0 0;color:var(--mut)}
+@media(min-width:760px){.dishes{grid-template-columns:repeat(5,1fr)}.dish:nth-child(even){margin-top:40px}.stats-in{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:759px){.fd{border-width:3px}}
+
+/* ===== v4 high-end layer ===== */
+.pre{position:fixed;inset:0;z-index:100;background:var(--y);display:grid;place-items:center;animation:preOut .9s cubic-bezier(.7,0,.2,1) 1.1s forwards}.pre img{animation:preIn .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes preIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}@keyframes preOut{to{transform:translateY(-100%);visibility:hidden}}
+.cur{position:fixed;left:-14px;top:-14px;width:28px;height:28px;border:2px solid var(--r);border-radius:50%;pointer-events:none;z-index:90;transition:width .25s,height .25s,margin .25s,background .25s}.cur.big{width:60px;height:60px;margin:-16px 0 0 -16px;background:rgba(249,200,0,.35)}
+.hero.hx{background:var(--b);background-image:none;color:#fff;overflow:hidden}.hx::before{content:"";position:absolute;width:min(70vw,640px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#a81a12 0 62%,transparent 63%);border:3px solid var(--y);right:-4%;bottom:-8%;opacity:.95}
+.hx .hero-in{position:relative;z-index:2}.hx .eyebrow{color:var(--y)}.hx .lead{color:#f3dfe2}.hx .btn-line{border-color:#fff;color:#fff}.hx .hero-facts b{background:var(--y);color:var(--b)}
+.hx h1{font-size:clamp(48px,10vw,108px)}.hx .o{color:transparent;-webkit-text-stroke:2px var(--y)}.hx .y{color:var(--y)}
+.mq{background:var(--y);color:var(--b)}.mq span{font:800 clamp(26px,5vw,54px)/1.1 var(--d2);letter-spacing:-.01em}.mq span::after{color:var(--r)}
+.btn-wh{background:#fff;color:var(--b)}.btn-wh:hover{background:var(--y)}
+.stk{background:var(--bg);color:#fff;transition:background .7s}.stk-run{height:430vh;position:relative}
+.stk-pin{position:sticky;top:0;height:100svh;padding-top:72px;display:grid;grid-template-rows:48% 52%;overflow:hidden}
+.stk-img{position:relative}.sk{position:absolute;left:50%;top:50%;height:88%;width:auto;max-width:78%;translate:-50% -50%;opacity:0;transform:translateY(80px) scale(.88) rotate(6deg);transition:opacity .6s,transform .8s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}.sk.on{opacity:1;transform:none}
+.stk-txt{position:relative}.step{position:absolute;inset:0 22px;opacity:0;transform:translateY(26px);transition:opacity .5s,transform .6s;pointer-events:none}.step.on{opacity:1;transform:none;pointer-events:auto}
+.step .eyebrow{color:var(--y);margin-bottom:0}.step h2{font-size:clamp(76px,22vw,210px);line-height:.85;color:transparent;-webkit-text-stroke:2px var(--y)}.kind{font:800 20px var(--d2);margin:6px 0}.sd{margin:0 0 8px;max-width:440px;color:#f3dfe2}.fine2{font-size:12px;color:#e3c2c8;margin:0 0 14px}
+.dots{position:absolute;right:14px;top:50%;display:grid;gap:9px}.dots i{width:9px;height:9px;border-radius:50%;background:#ffffff55;transition:.3s}.dots i.on{background:var(--y);transform:scale(1.4)}
+@media(min-width:900px){.stk-pin{grid-template-rows:none;grid-template-columns:1fr 1fr;align-items:center}.stk-txt{order:-1;height:62%}.step{inset:0 0 0 max(6vw,24px)}.sk{height:84%;max-width:90%}}
+.proc{background:var(--cream)}.steps4{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:2px solid var(--ink)}.steps4 li{padding:26px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:90px 1fr;column-gap:16px;transition:padding .35s,background .35s}.steps4 li:hover{padding-left:16px;background:#fff}.steps4 b{grid-row:span 2;font:800 54px/1 var(--d2);color:transparent;-webkit-text-stroke:1.5px var(--r)}.steps4 p{margin:4px 0 0;color:var(--mut)}
+@media(min-width:900px){.steps4{grid-template-columns:repeat(4,1fr);border-top:0;gap:18px}.steps4 li{display:block;border:2px solid var(--ink);border-radius:22px;padding:26px;background:#fff}.steps4 li:hover{padding-left:26px;transform:translateY(-8px);background:var(--y)}.steps4 b{display:block;font-size:72px;margin-bottom:14px}}
 </style><script defer src="/app.js"></script>
 <!-- ANALYTICS PLACEHOLDER: paste your Google Analytics / Meta Pixel snippet here only when you have your own ID. (If it loads an external script, add that host to the CSP in server.js.) -->
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Amrut Foods","brand":"MAHA AMRUT","url":"https://www.amrutfoodz.com","logo":"https://www.amrutfoodz.com/images/logo.webp","email":"contact@amrutfoodz.com","telephone":"+917210097007","address":{"@type":"PostalAddress","streetAddress":"Shop No. 1, Rich Plaza Apartment, Near Doodh Ganga Sangh, Yashodanagar","addressLocality":"Indapur","postalCode":"413106","addressRegion":"Maharashtra","addressCountry":"IN"}}</script>
 </head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
+<body><div class="pre" aria-hidden="true"><img src="/images/logo.webp" width="141" height="80" alt=""></div>
+<a class="skip" href="#main">Skip to content</a><div class="prog" id="prog"></div>
 <header class="hdr" id="top"><div class="wrap hdr-in">
 <a class="logo" href="/" aria-label="MAHA AMRUT home"><img src="/images/logo.webp" width="141" height="80" alt="MAHA AMRUT - Trust in every grain"></a>
 <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
-<nav class="main-nav" id="nav" aria-label="Main"><a href="/#products">Products</a><a href="/#packs">Pack sizes</a><a href="/#about">About</a><a href="/#quality">Quality</a><a href="/#business">For business</a><a href="tel:+917210097007" class="nav-call">Call</a><a class="btn btn-red nav-cta" href="/#contact">Enquire for bulk orders</a></nav>
+<nav class="main-nav" id="nav" aria-label="Main"><a href="/#products">Products</a><a href="/#about">About</a><a href="/#quality">Quality</a><a href="/#business">For business</a><a href="tel:+917210097007" class="nav-call">Call</a><a class="btn btn-red nav-cta" href="/#contact">Enquire for bulk orders</a></nav>
 </div></header>
 <main id="main">
-<section class="hero"><div class="wrap hero-in">
+<section class="hero hx"><div class="wrap hero-in">
 <div class="hero-copy">
 <p class="eyebrow">Besan &amp; Vatana Flour &middot; Made by Amrut Foods, Indapur</p>
-<h1>Trust in every <em>grain.</em></h1>
-<p class="lead">MAHA AMRUT Chana Besan is made by us in Indapur, Maharashtra, from 100% chana dal. Retail packs for the shelf, bulk packs for your kitchen or factory.</p>
+<h1><span class="ln">Trust</span><span class="ln o">in every</span><span class="ln y">grain.</span></h1>
+<p class="lead">Made by us in Indapur from 100% chana dal. Retail 500 g packs and 10 kg / 30 kg bulk bags for your shelf, kitchen or factory.</p>
 <div class="cta"><a class="btn btn-red" href="#products">Explore products</a><a class="btn btn-line" href="#contact">Enquire for bulk orders</a></div>
 <ul class="hero-facts"><li><b>100%</b> chana dal Besan</li><li><b>500 g &middot; 10 kg &middot; 30 kg</b> Besan packs</li><li><b>FSSAI</b> licensed</li></ul>
 </div>
-<div class="hero-packs" aria-label="MAHA AMRUT packs">
+<div class="hero-packs" aria-label="MAHA AMRUT packs"><svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="sc" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><circle cx="60" cy="60" r="58" fill="#5a1522"/><text font-size="10.5" font-weight="800" fill="#f9c800" letter-spacing="1.5"><textPath href="#sc" textLength="276">TRUST IN EVERY GRAIN &#8226; MAHA AMRUT &#8226; </textPath></text><circle cx="60" cy="60" r="27" fill="#d9291c"/><text x="60" y="68" text-anchor="middle" font-size="24" font-style="italic" font-weight="700" fill="#fff" font-family="Georgia,serif">A</text></svg>
 <img class="p p1" src="/images/besan-500g.webp" width="746" height="1100" alt="MAHA AMRUT Besan 500 g pack" fetchpriority="high">
 <img class="p p2" src="/images/besan-30kg.webp" width="831" height="1100" alt="MAHA AMRUT Besan 30 kg bag">
 <img class="p p3" src="/images/vatana-30kg.webp" width="829" height="1100" alt="MAHA AMRUT Vatana Flour 30 kg bag">
 </div></div></section>
 
-<section class="strip"><div class="wrap strip-in"><span>Made from 100% chana dal</span><span>Unpolished dal</span><span>Made &amp; packed by Amrut Foods</span><span>FSSAI Lic. No. 21526084009696</span></div></section>
+<section class="mq" aria-label="Highlights"><div class="mq-t"><span>Pure &amp; Tasty</span><span>Chana Besan</span><span>Vatana Flour</span><span>Trust in every grain</span><span>Pure &amp; Tasty</span><span>Chana Besan</span><span>Vatana Flour</span><span>Trust in every grain</span><span>Pure &amp; Tasty</span><span>Chana Besan</span><span>Vatana Flour</span><span>Trust in every grain</span><span>Pure &amp; Tasty</span><span>Chana Besan</span><span>Vatana Flour</span><span>Trust in every grain</span></div></section>
 
-<section class="sec" id="products"><div class="wrap">
-<div class="head"><p class="eyebrow">The range</p><h2>Two flours. <em>Built for Indian kitchens.</em></h2></div>
-<article class="prod reveal" id="chana-besan"><div class="prod-img" data-bg="y"><img id="besan-img" src="/images/besan-500g.webp" width="746" height="1100" alt="MAHA AMRUT Besan 500 g pack" loading="lazy"></div>
-<div class="prod-body"><p class="eyebrow">Chana / Gram Flour</p><h3>MAHA AMRUT Besan</h3>
-<p>Besan made from chana dal, for pakora, laddoo, dhokla, chilla and farsan. Choose a pack size to see it.</p>
-<div class="tabs" role="group" aria-label="Besan pack size">
-<button class="tab on" data-pack="besan-500g" data-alt="MAHA AMRUT Besan 500 g pack" data-note="Retail pack, for shelves and home kitchens.">500 g</button>
-<button class="tab" data-pack="besan-10kg" data-alt="MAHA AMRUT Besan 10 kg bag" data-note="Bulk pack, for wholesalers, caterers and small units.">10 kg</button>
-<button class="tab" data-pack="besan-30kg" data-alt="MAHA AMRUT Besan 30 kg bag" data-note="Bulk pack, for distributors and farsan / namkeen makers.">30 kg</button></div>
-<p class="note" id="pack-note">Retail pack, for shelves and home kitchens.</p>
-<table class="spec"><caption>As printed on pack</caption><tr><th>Ingredient</th><td>Chana dal</td></tr><tr><th>Protein / 100 g</th><td>21.14 g (approx.)</td></tr><tr><th>Total fat / 100 g</th><td>5.08 g</td></tr><tr><th>Carbohydrate / 100 g</th><td>63.75 g</td></tr><tr><th>Crude fibre / 100 g</th><td>8.54 g</td></tr><tr><th>Energy / 100 g</th><td>385.26 kcal</td></tr><tr><th>Best before</th><td>3 months from packaging</td></tr></table>
-<button class="btn btn-red enquire-product" data-product="Chana Besan">Enquire about Besan</button></div></article>
+<section class="stk" id="products" style="--bg:#b81f14"><div class="stk-run"><div class="stk-pin"><div class="stk-img"><img class="sk on" src="/images/besan-500g.webp" width="900" height="1100" alt="MAHA AMRUT Besan · Retail pack 500 g"><img class="sk" src="/images/besan-10kg.webp" width="900" height="1100" alt="MAHA AMRUT Besan · Bulk bag 10 kg"><img class="sk" src="/images/besan-30kg.webp" width="900" height="1100" alt="MAHA AMRUT Besan · Bulk bag 30 kg"><img class="sk" src="/images/vatana-30kg.webp" width="900" height="1100" alt="MAHA AMRUT Vatana Flour · Bulk bag 30 kg"></div><div class="stk-txt"><div class="step on" data-bg="#b81f14"><p class="eyebrow">The range</p><h2>500 g</h2><p class="kind">Besan · Retail pack</p><p class="sd">Chana / gram flour made from 100% chana dal, in a 500 g pack for shelves and home kitchens.</p><p class="fine2">Best before 3 months from packaging.</p><button class="btn btn-wh enquire-product" data-product="Chana Besan">Enquire for this pack</button></div><div class="step" data-bg="#5a1522"><p class="eyebrow">The range</p><h2>10 kg</h2><p class="kind">Besan · Bulk bag</p><p class="sd">For wholesalers, caterers, hotels and small food units who buy in volume.</p><p class="fine2">Best before 3 months from packaging.</p><button class="btn btn-wh enquire-product" data-product="Chana Besan">Enquire for this pack</button></div><div class="step" data-bg="#8f1718"><p class="eyebrow">The range</p><h2>30 kg</h2><p class="kind">Besan · Bulk bag</p><p class="sd">For distributors and farsan / namkeen makers who need regular supply.</p><p class="fine2">Best before 3 months from packaging.</p><button class="btn btn-wh enquire-product" data-product="Chana Besan">Enquire for this pack</button></div><div class="step" data-bg="#3b0f18"><p class="eyebrow">The range</p><h2>30 kg</h2><p class="kind">Vatana Flour · Bulk bag</p><p class="sd">Flour made from 100% vatana dal (yellow peas). Pack size: 30 kg.</p><p class="fine2">Best before 3 months from packaging.</p><button class="btn btn-wh enquire-product" data-product="Vatana Flour">Enquire for this pack</button></div></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div></div></section><section class="sec proc" id="process"><div class="wrap"><div class="head"><p class="eyebrow">How it reaches you</p><h2>From dal to <em>your kitchen.</em></h2></div><ol class="steps4"><li><b>01</b><h3>Chana dal</h3><p>Our Besan starts as 100% chana dal.</p></li><li><b>02</b><h3>Made into besan</h3><p>We make our own Besan in Indapur, Maharashtra.</p></li><li><b>03</b><h3>Packed</h3><p>500 g retail packs and 10 kg / 30 kg bulk bags.</p></li><li><b>04</b><h3>Supplied</h3><p>To retailers, distributors, wholesalers, hotels, caterers and farsan makers.</p></li></ol></div></section>
 
-<article class="prod prod-rev reveal" id="vatana-flour"><div class="prod-img" data-bg="b"><img src="/images/vatana-30kg.webp" width="829" height="1100" alt="MAHA AMRUT Vatana Flour 30 kg bag" loading="lazy"></div>
-<div class="prod-body"><p class="eyebrow">Yellow vatana (yellow pea) flour</p><h3>MAHA AMRUT Vatana Flour</h3>
-<p>Flour made from premium vatana dal, a bulk ingredient for farsan, snack and food-service kitchens.</p>
-<p class="note">Available pack size: 30 kg.</p>
-<table class="spec"><caption>As printed on pack</caption><tr><th>Ingredient</th><td>Vatana dal</td></tr><tr><th>Made from</th><td>100% vatana dal</td></tr><tr><th>Best before</th><td>3 months from packaging</td></tr></table>
-<button class="btn btn-red enquire-product" data-product="Vatana Flour">Enquire about Vatana Flour</button></div></article>
-</div></section>
 
-<section class="sec sec-cream" id="packs"><div class="wrap">
-<div class="head"><p class="eyebrow">Retail vs bulk</p><h2>Right pack for <em>every buyer.</em></h2></div>
-<div class="cols"><div class="card reveal"><h3>Retail &middot; 500 g</h3><p>Besan in a 500 g pack, for kirana stores, supermarkets and modern trade. Ask us about case sizes and supply.</p></div>
-<div class="card reveal"><h3>Bulk &middot; 10 kg &amp; 30 kg</h3><p>Besan in 10 kg and 30 kg bags, and Vatana Flour in 30 kg, for wholesalers, hotels, caterers and farsan / namkeen manufacturers.</p></div></div>
-<p class="fine">Prices are not listed online. Send an enquiry for rates and availability.</p></div></section>
 
 <section class="sec" id="about"><div class="wrap two"><div><p class="eyebrow">About Amrut Foods</p><h2>Made in <em>Indapur.</em></h2></div>
 <div class="prose"><p>Amrut Foods is based in Yashodanagar, Indapur, Maharashtra. We make our own Besan and sell it under the MAHA AMRUT brand, alongside Vatana Flour.</p><p>We work directly with retailers, distributors, wholesalers, hotels and caterers, and with farsan and namkeen makers who buy flour in volume.</p></div></div></section>
 
-<section class="sec sec-dark" id="quality"><div class="wrap"><div class="head"><p class="eyebrow">Quality &amp; manufacturing</p><h2>What is on <em>our pack.</em></h2></div>
+<section class="stats"><div class="wrap stats-in"><div class="stat"><b data-count="100" data-suf="%">100%</b><span>Chana dal in our Besan</span></div><div class="stat"><b data-count="3">3</b><span>Besan pack sizes: 500 g, 10 kg, 30 kg</span></div><div class="stat"><b>FSSAI</b><span>Lic. No. 21526084009696</span></div></div></section><section class="sec sec-dark" id="quality"><div class="wrap"><div class="head"><p class="eyebrow">Quality &amp; manufacturing</p><h2>What is on <em>our pack.</em></h2></div>
 <div class="cols4"><div class="card-d"><b>100% dal</b><p>Besan is made from 100% chana dal. Vatana Flour is made from 100% vatana dal.</p></div><div class="card-d"><b>Unpolished dal</b><p>Besan is made with unpolished dal, as stated on pack.</p></div><div class="card-d"><b>FSSAI licensed</b><p>FSSAI Lic. No. 21526084009696, printed on every pack.</p></div><div class="card-d"><b>Clear storage</b><p>Best before 3 months from packaging. Store in a cool, dry, hygienic place.</p></div></div></div></section>
 
 <section class="sec" id="business"><div class="wrap two"><div><p class="eyebrow">For business</p><h2>Let us <em>supply you.</em></h2><p class="lead2">Tell us what you need. We will discuss product, pack size and delivery with you.</p><a class="btn btn-red" href="#contact">Send a business enquiry</a></div>
 <ul class="rows"><li><b>Retailers &amp; supermarkets</b><span>500 g retail packs</span></li><li><b>Distributors &amp; wholesalers</b><span>Territory and volume discussions</span></li><li><b>Farsan &amp; namkeen makers</b><span>Besan and Vatana Flour in bulk</span></li><li><b>Hotels, caterers &amp; kitchens</b><span>10 kg and 30 kg bags</span></li></ul></div></section>
 
-<section class="sec sec-cream" id="contact"><div class="wrap two top">
+<section class="sec" id="faq"><div class="wrap faq"><p class="eyebrow">FAQ</p><h2 style="margin-bottom:24px">Quick <em>answers.</em></h2><details><summary>What is besan?</summary><p>Besan is gram flour. MAHA AMRUT Besan is made from 100% chana dal.</p></details><details><summary>Which pack sizes are available?</summary><p>Besan comes in 500 g, 10 kg and 30 kg packs. Vatana Flour is available in a 30 kg bag.</p></details><details><summary>What is Vatana Flour made from?</summary><p>Vatana Flour is made from 100% vatana dal (yellow peas), as stated on the pack.</p></details><details><summary>Do you supply to businesses?</summary><p>Yes. We work with retailers, distributors, wholesalers, hotels, caterers and farsan or namkeen makers. Send us an enquiry with your requirement.</p></details><details><summary>How long does it stay fresh?</summary><p>Best before 3 months from the date of packaging. Store in a cool, dry and hygienic place.</p></details><details><summary>Are prices listed online?</summary><p>No. Please send an enquiry or message us on WhatsApp for rates and availability.</p></details><details><summary>Where are you based?</summary><p>Amrut Foods is in Yashodanagar, Indapur, Maharashtra.</p></details></div></section><section class="sec sec-cream" id="contact"><div class="wrap two top">
 <div><p class="eyebrow">Contact</p><h2>Start an <em>enquiry.</em></h2>
 <ul class="contact"><li><small>Call / WhatsApp</small><a href="tel:+917210097007">+91 72100 97007</a></li><li><small>Email</small><a href="mailto:contact@amrutfoodz.com">contact@amrutfoodz.com</a></li><li><small>Address</small><span>Shop No. 1, Rich Plaza Apartment, Near Doodh Ganga Sangh, Yashodanagar, Indapur &ndash; 413106, Maharashtra</span></li></ul>
 <a class="btn btn-wa" href="https://wa.me/917210097007?text=Hello%20Maha%20Amrut%2C%20I%20would%20like%20to%20enquire%20about%20your%20products." target="_blank" rel="noopener">Chat on WhatsApp</a></div>
@@ -135,4 +165,16 @@ em{font-style:italic;color:var(--r)}.eyebrow{font-size:12px;font-weight:800;lett
 <!-- SOCIAL LINKS: add real links here when ready, e.g. <a href="https://instagram.com/YOURPAGE" rel="noopener">Instagram</a> -->
 </div></div><div class="wrap fb">&copy; <span id="year">2026</span> Amrut Foods. All rights reserved.</div></footer>
 <a class="wa-float" href="https://wa.me/917210097007" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a>
-</body></html>
+<script>
+(()=>{const q=(s)=>[...document.querySelectorAll(s)];
+q(".card,.card-d,.rows li,.contact li,.form,.head,.hero-facts li").forEach((el,i)=>{el.classList.add("reveal");el.style.transitionDelay=((i%4)*90)+"ms"});
+const hero=document.querySelector(".hero");
+if(hero&&matchMedia("(pointer:fine)").matches)hero.addEventListener("pointermove",e=>{const r=hero.getBoundingClientRect();hero.style.setProperty("--mx",(e.clientX-r.left)/r.width-.5);hero.style.setProperty("--my",(e.clientY-r.top)/r.height-.5)});
+q(".prod-img").forEach(b=>{const i=b.querySelector("img");if(!i||!matchMedia("(pointer:fine)").matches)return;
+b.addEventListener("pointermove",e=>{const r=b.getBoundingClientRect();i.style.setProperty("--ry",(((e.clientX-r.left)/r.width-.5)*14)+"deg");i.style.setProperty("--rx",(-((e.clientY-r.top)/r.height-.5)*10)+"deg")});
+b.addEventListener("pointerleave",()=>{i.style.setProperty("--ry","0deg");i.style.setProperty("--rx","0deg")})});
+const bi=document.getElementById("besan-img");q(".tab").forEach(t=>t.addEventListener("click",()=>{if(!bi)return;bi.classList.remove("swap");void bi.offsetWidth;bi.classList.add("swap")}));
+const pr=document.getElementById("prog");let tk=false;addEventListener("scroll",()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{const d=document.documentElement;pr.style.setProperty("--p",d.scrollTop/Math.max(1,d.scrollHeight-innerHeight));tk=false})},{passive:true});
+})();
+</script><script>(()=>{const els=[...document.querySelectorAll("[data-count]")];if(!("IntersectionObserver" in window))return;const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const el=e.target,to=+el.dataset.count,suf=el.dataset.suf||"";let s=null;const f=t=>{s=s||t;const p=Math.min(1,(t-s)/1200);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}),{threshold:.6});els.forEach(e=>io.observe(e))})();</script><script>(()=>{const run=document.querySelector(".stk-run");if(run){const st=document.querySelector(".stk"),S=[...run.querySelectorAll(".step")],I=[...run.querySelectorAll(".sk")],D=[...run.querySelectorAll(".dots i")];let c=-1;const u=()=>{const r=run.getBoundingClientRect(),p=Math.min(.999,Math.max(0,-r.top/(r.height-innerHeight))),i=Math.floor(p*S.length);if(i===c)return;c=i;S.forEach((s,k)=>{s.classList.toggle("on",k===i);I[k].classList.toggle("on",k===i);D[k].classList.toggle("on",k===i)});st.style.setProperty("--bg",S[i].dataset.bg)};addEventListener("scroll",u,{passive:true});addEventListener("resize",u);u()}
+if(matchMedia("(pointer:fine)").matches){const c=document.createElement("div");c.className="cur";document.body.appendChild(c);addEventListener("pointermove",e=>{c.style.transform="translate("+e.clientX+"px,"+e.clientY+"px)";c.classList.toggle("big",!!e.target.closest("a,button,summary,.tab"))},{passive:true})}})();</script></body></html>
